@@ -1,18 +1,9 @@
-<!DOCTYPE html>
+@extends('layout')
 
-<html>
+@section('title')
+    HomeStead Test Home
+@endsection
 
-<head>
-    <title></title>
-</head>
-
-<body>
-    <h1>
-        Welcome!!
-    </h1>
-    <p>
-        <a href="/contact">Contact</a> us to learn more.
-    </p>
-</body>
-
-</html>
+@section('content')
+    <h1>My First Website!</h1>
+@endsection
