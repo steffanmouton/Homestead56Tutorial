@@ -1,28 +1,38 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create a new Project</title>
-</head>
-<body>
-    <h1>Create a new Project</h1>
+@extends('layout')
+
+@section('content')
+    <h1 class="title">Create a new Project</h1>
 
     <form method="POST" action="/projects">
         {{ csrf_field() }}
-        <div>
-            <input text="text" name="title" placeholder="Project Title">
+
+        <div class="field">
+            <label for="title" class="label">Project Title</label>
+            <div class="control">
+                <input class="input {{ $errors->has('title') ? 'is-danger' : '' }}" text="text" name="title" placeholder="Project Title" value="{{ old('title') }}">
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="description" class="label">Project Description</label>
+            <div class="control">
+                <textarea class="input {{ $errors->has('description') ? 'is-danger' : '' }}" name="description" placeholder="Project Description" value="{{ old('description') }}"></textarea>
+            </div>
         </div>
 
         <div>
-            <textarea name="description" placeholder="Project Description"></textarea>
+            <button type="submit" class="button is-link">Create Project</button>
         </div>
 
-        <div>
-            <button type="submit">Create Project</button>
+        @if ($errors->any())
+        <div class="notification is-danger" style="margin-top: 10px">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
+        @endif
+
     </form>
-</body>
-</html>
+@endsection
