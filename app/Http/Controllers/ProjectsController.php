@@ -24,14 +24,14 @@ class ProjectsController extends Controller
         $validated = request()->validate([
             'title' => ['required', 'min: 3'],
             'description' => 'required'
-        ]); 
+        ]);
 
-//        $project = new Project();
+//        $Project = new Project();
 //
-//        $project->title = request('title');
-//        $project->description = request('description');
+//        $Project->title = request('title');
+//        $Project->description = request('description');
 //
-//        $project->save();
+//        $Project->save();
 //
 //        =========================================================
 //
@@ -52,12 +52,17 @@ class ProjectsController extends Controller
 
     public function update(Project $project)
     {
-//        $project->title = request('title');
-//        $project->description = request('description');
+//        $Project->title = request('title');
+//        $Project->description = request('description');
 //
-//        $project->save();
+//        $Project->save();
 
-        $project->update(request('title', 'description'));
+        $validated = request()->validate([
+            'title' => ['required', 'min: 3'],
+            'description' => 'required'
+        ]);
+
+        $project->update($validated);
         return redirect('/projects');
     }
 

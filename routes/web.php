@@ -31,10 +31,14 @@ Route::get('/contact', 'PagesController@contact');
 
 //Route::get('/projects', 'ProjectsController@index');
 //Route::get('/projects/create', 'ProjectsController@create');
-//Route::get('/projects/{project}', 'ProjectsController@show');
+//Route::get('/projects/{Project}', 'ProjectsController@show');
 //Route::post('/projects', 'ProjectsController@store');
-//Route::get('/projects/{project}/edit', 'ProjectsController@edit');
-//Route::patch('projects/{project}', 'ProjectsController@update');
-//Route::delete('projects/{project}', 'ProjectsController@delete');
+//Route::get('/projects/{Project}/edit', 'ProjectsController@edit');
+//Route::patch('projects/{Project}', 'ProjectsController@update');
+//Route::delete('projects/{Project}', 'ProjectsController@delete');
 // The code below handles all seven of the above routes
 Route::resource('projects', 'ProjectsController');
+
+Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
+
+Route::patch('/tasks/{task}', 'ProjectTasksController@update');
