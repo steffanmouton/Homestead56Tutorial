@@ -18,9 +18,11 @@
 //Route::get('/', 'PagesController@home');
 use App\Services\Twitter;
 
-Route::get('/', function(Twitter $twitter) {
-    dd($twitter);
-});
+//Route::get('/', function(Twitter $twitter) {
+//    dd($twitter);
+//});
+
+Route::get('/', 'PagesController@home');
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
 
@@ -47,3 +49,7 @@ Route::resource('projects', 'ProjectsController');
 Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
 
 Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

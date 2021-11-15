@@ -6,10 +6,16 @@ use App\Project;
 
 class ProjectsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-
-        $projects = Project::all();
+        //auth()->id();
+        $projects = Project::where('owner_id', auth()->id())->get();
 
         return view('projects.index', ['projects'=>$projects]);
     }
@@ -26,6 +32,10 @@ class ProjectsController extends Controller
             'description' => 'required'
         ]);
 
+        $attributes = $validated;
+
+        $attributes['owner_id'] = auth()->id();
+
 //        $Project = new Project();
 //
 //        $Project->title = request('title');
@@ -40,7 +50,7 @@ class ProjectsController extends Controller
 //            'description' => request('description')
 //        ]);
 
-        Project::create($validated);
+        Project::create($attributes);
 
         return redirect('/projects');
     }
@@ -75,6 +85,12 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {
+        
+
+        if($project->owner_id !== auth()->id()) {
+            abort(403);
+        }
+
         return view('projects.show', compact("project"));
     }
 }
