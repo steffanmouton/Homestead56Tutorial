@@ -175,6 +175,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Provider for Social Services e.g. Twitter, Facebook
+         */
+        App\Providers\SocialServiceProvider::class,
     ],
 
     /*
